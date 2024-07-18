@@ -12,10 +12,6 @@ import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined'
 import RestoreFromTrashIcon from '@mui/icons-material/RestoreFromTrash'
 import UnarchiveOutlinedIcon from '@mui/icons-material/UnarchiveOutlined'
 import React from 'react'
-
-import globals from '../../../lib/global/globals.module.css'
-import styles from './notecard.module.css'
-
 import {
   addImage,
   archiveOrRestoreNote,
@@ -23,25 +19,22 @@ import {
   deleteNote,
   softDeleteOrRestoreNote,
 } from '../../../app/features/notes/notes.slice'
+import globals from '../../../lib/global/globals.module.css'
 import { useAppDispatch } from '../../../lib/hooks/redux-hooks'
 import ColorPalleteAtom from '../../atoms/color-pallete/ColorPallete.atom'
 import IconTooltipMolecule from '../icon-tooltip/IconTooltip.molecule'
+import styles from './notecard.module.css'
 import { NoteCardProps } from './notecard.type'
 
-const NoteCardMolecule: React.FC<NoteCardProps> = ({ data, trash }) => {
+const NoteCardMolecule: React.FC<NoteCardProps> = (props: NoteCardProps) => {
+  const { data, trash } = props
   const dispatch = useAppDispatch()
-
   const handleNoteImageUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
     const image = e.target.files?.[0]
     if (image) {
       const reader = new FileReader()
-
       reader.onload = e => {
-        console.log('====================================')
-        console.log({ data: data.id })
-        console.log('====================================')
         const imageBlob = new Blob([e.target?.result || ''], { type: image.type })
-
         const imageUrl = URL.createObjectURL(imageBlob)
         dispatch(addImage({ id: data.id, image: imageUrl }))
       }

@@ -43,6 +43,7 @@ const notesSlice = createSlice({
     },
     addImage: (state, action: PayloadAction<{ id: number; image: string }>) => {
       const { id, image } = action.payload
+      console.log('reduxid: ', id)
 
       const note = state.notes.find(note => note.id === id)
 

@@ -11,11 +11,11 @@ import { useState } from 'react'
 import globals from '../../../lib/global/globals.module.css'
 import styles from './navbar.module.css'
 
+import { toggleState } from '../../../app/features/sidebar/sidebar.slice'
+import { useAppDispatch, useAppSelector } from '../../../lib/hooks/redux-hooks'
 import { convertPathToPascalCase } from '../../../lib/utils/convert-path'
 import IconTooltipMolecule from '../../molecules/icon-tooltip/IconTooltip.molecule'
 import SearchInputMolecule from '../../molecules/search-input/SearchInput.molecule'
-import { useAppDispatch, useAppSelector } from '../../../lib/hooks/redux-hooks'
-import { toggleState } from '../../../app/features/sidebar/sidebar.slice'
 
 const NavbarOrganisms = () => {
   const [search, setSearch] = useState('')
@@ -171,13 +171,6 @@ const NavbarOrganisms = () => {
             tooltipPosition='center'
             icon={<AppsOutlinedIcon sx={{ width: '25px', height: '25px' }} />}
           />
-          <div
-            role='button'
-            tabIndex={0}
-            className={`${styles.profile} ${globals.flex} ${globals['center-items']}`}
-          >
-            <img src='/images/me.webp' alt='The ArtisticProgrammer' />
-          </div>
         </div>
       </div>
     </nav>
