@@ -30,6 +30,7 @@ module.exports = {
     "react/prop-types": "off",
     "import/no-unresolved": "off",
     "react/react-in-jsx-scope": "off",
-    "import/named": "off"
+    "import/named": "off",
+    "linebreak-style": ["error", "unix"], // Add this line
   },
 };
